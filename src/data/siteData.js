@@ -1,7 +1,4 @@
-// ------------------------------------------------------------------
-// All editable content lives here. Change name, links, projects, etc.
-// in one place instead of hunting through components.
-// ------------------------------------------------------------------
+import heroImage from "../assets/profile.png"; 
 
 export const profile = {
   name: "Sohel Rana",
@@ -15,7 +12,8 @@ export const profile = {
     "I work with Python, Django, HTML, CSS, JavaScript, MySQL, PostgreSQL, Git, and GitHub.",
     "I enjoy turning ideas into real-world applications, solving problems through clean and efficient code, and continuously learning new technologies to improve my development skills.",
   ],
-  profileImage: null, // set to an image path/URL to show a real photo
+  profileImage: heroImage,
+  heroImage: heroImage,
   social: {
     facebook: "YOUR_FACEBOOK_URL",
     linkedin: "YOUR_LINKEDIN_URL",

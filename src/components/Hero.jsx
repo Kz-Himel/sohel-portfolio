@@ -45,7 +45,7 @@ export default function Hero() {
 
         {/* ---- Image side ---- */}
         <div className="order-1 md:order-2 animate-fade-up [animation-delay:120ms]">
-          <div className="relative mx-auto aspect-square w-28 sm:w-36 md:w-full md:max-w-[190px] lg:max-w-[220px]">
+          <div className="relative mx-auto aspect-square w-40 sm:w-52 md:w-full md:max-w-[260px] lg:max-w-[300px]">
             {/* accent corner frame — signature detail, echoes the card corner dots */}
             <div className="pointer-events-none absolute -left-1.5 -top-1.5 h-6 w-6 border-l border-t border-accent/50 sm:h-8 sm:w-8" />
             <div className="pointer-events-none absolute -bottom-1.5 -right-1.5 h-6 w-6 border-b border-r border-accent/50 sm:h-8 sm:w-8" />
