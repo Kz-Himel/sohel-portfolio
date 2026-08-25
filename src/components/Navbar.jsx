@@ -83,11 +83,12 @@ export default function Navbar() {
             ))}
             <li>
               <a
-                href="#contact"
+                href=""
+                target="_blank"
                 onClick={handleLinkClick}
                 className="mt-2 inline-flex items-center border border-accent/50 px-4 py-2 text-xs uppercase tracking-wider text-accent"
               >
-                Contact Me
+                Github
               </a>
             </li>
           </ul>
