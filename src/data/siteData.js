@@ -20,6 +20,7 @@ export const profile = {
     facebook: "YOUR_FACEBOOK_URL",
     linkedin: "YOUR_LINKEDIN_URL",
     github: "YOUR_GITHUB_URL",
+    whatsapp: "8801XXXXXXXXX", // country code + number, + বা space ছাড়া
   },
   email: "hello@sohelrana.dev",
 };

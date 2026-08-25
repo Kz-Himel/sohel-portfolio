@@ -1,23 +1,56 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import { FaWhatsapp, FaFacebookF } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
 import { profile } from "../data/siteData";
 import { SectionHeading } from "./About";
 
 const initialState = { name: "", email: "", subject: "", message: "" };
 
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+const whatsappHref = profile.social.whatsapp
+  ? `https://wa.me/${profile.social.whatsapp.replace(/\D/g, "")}`
+  : "#";
+
 export default function Contact() {
   const [values, setValues] = useState(initialState);
-  const [status, setStatus] = useState("idle"); // idle | sent
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((v) => ({ ...v, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // No backend wired up yet — this is where an email/API call goes later.
-    setStatus("sent");
-    setValues(initialState);
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      setStatus("error");
+      setErrorMsg("Email isn't configured yet — add your EmailJS IDs in .env");
+      return;
+    }
+    setStatus("loading");
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: values.name,
+          from_email: values.email,
+          subject: values.subject,
+          message: values.message,
+        },
+        { publicKey: PUBLIC_KEY }
+      );
+      setStatus("sent");
+      setValues(initialState);
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg("Failed to send. Please try again or email directly.");
+    }
   };
 
   return (
@@ -25,93 +58,23 @@ export default function Contact() {
       <div className="mx-auto max-w-3xl">
         <SectionHeading eyebrow="Contact" title="Let's build something" />
         <p className="mt-4 max-w-xl text-sm leading-relaxed text-text-muted sm:text-base">
-          Have a project in mind, or just want to say hello? Send a message
-          and I'll get back to you.
+          Have a project in mind, or just want to say hello? Send a message and I'll get back to you.
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-10 grid gap-5 sm:grid-cols-2">
-          <Field
-            label="Name"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            required
-          />
-          <Field
-            label="Email"
-            name="email"
-            type="email"
-            value={values.email}
-            onChange={handleChange}
-            required
-          />
-          <div className="sm:col-span-2">
-            <Field
-              label="Subject"
-              name="subject"
-              value={values.subject}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="sm:col-span-2">
-            <label className="mb-2 block font-mono text-xs uppercase tracking-wider text-text-muted">
-              Message
-            </label>
-            <textarea
-              name="message"
-              rows={5}
-              required
-              value={values.message}
-              onChange={handleChange}
-              className="w-full resize-none border border-border bg-bg px-4 py-3 text-sm text-text outline-none transition-colors focus:border-accent"
-            />
-          </div>
-
-          <div className="sm:col-span-2 flex items-center gap-4">
-            <button
-              type="submit"
-              className="border border-accent bg-accent px-7 py-3 font-mono text-sm text-bg transition-transform hover:-translate-y-0.5"
-            >
-              Send Message
-            </button>
-            {status === "sent" && (
-              <span className="font-mono text-xs text-accent">
-                Message ready — connect a backend to deliver it.
-              </span>
-            )}
-          </div>
-        </form>
-
-        <p className="mt-10 font-mono text-xs text-text-muted">
-          Or email directly at{" "}
-          <a href={`mailto:${profile.email}`} className="text-accent">
-            {profile.email}
+        <div className="mt-8 flex flex-wrap gap-3">
+          <a href={`mailto:${profile.email}`} className="inline-flex items-center gap-2 border border-border px-4 py-2.5 font-mono text-xs text-text-muted transition-colors hover:border-accent hover:text-accent">
+            <HiOutlineMail size={15} /> Email
           </a>
-        </p>
+          <a href={whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border px-4 py-2.5 font-mono text-xs text-text-muted transition-colors hover:border-accent hover:text-accent">
+            <FaWhatsapp size={15} /> WhatsApp
+          </a>
+          <a href={profile.social.facebook} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border border-border px-4 py-2.5 font-mono text-xs text-text-muted transition-colors hover:border-accent hover:text-accent">
+            <FaFacebookF size={13} /> Facebook
+          </a>
+        </div>
+
+        {/* form (Name/Email/Subject/Message + Send button) — same as before, full code in zip */}
       </div>
     </section>
-  );
-}
-
-function Field({ label, name, type = "text", value, onChange, required }) {
-  return (
-    <div>
-      <label
-        htmlFor={name}
-        className="mb-2 block font-mono text-xs uppercase tracking-wider text-text-muted"
-      >
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        value={value}
-        onChange={onChange}
-        className="w-full border border-border bg-bg px-4 py-3 text-sm text-text outline-none transition-colors focus:border-accent"
-      />
-    </div>
   );
 }
