@@ -49,10 +49,11 @@ export default function Navbar() {
           </ul>
 
           <a
-            href="#contact"
+            href=""
+            target="_blank"
             className="hidden md:inline-flex items-center border border-accent/50 px-4 py-2 font-mono text-xs uppercase tracking-wider text-accent transition-colors hover:bg-accent hover:text-bg"
           >
-            Contact Me
+            Github
           </a>
 
           <button
