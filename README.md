@@ -1,4 +1,4 @@
-# Sohel Rana — Portfolio
+# Sohel Rana
 
 A modern, responsive personal portfolio built with **React**, **Tailwind CSS v4**, and a **Three.js** animated background (a slowly drifting node-graph representing connected full-stack systems).
 
