@@ -1,67 +1,46 @@
-# Sohel Rana
+# Sohel Rana — Full-Stack Python & Django Developer Portfolio
 
-A modern, responsive personal portfolio built with **React**, **Tailwind CSS v4**, and a **Three.js** animated background (a slowly drifting node-graph representing connected full-stack systems).
+A professional, modern, and artistic personal portfolio website engineered with **React 19**, **Tailwind CSS v4**, and an interactive **Three.js** Crimson Constellation background.
 
-## Tech stack
+## 🎨 Design System & Brand Identity
 
-- React 19 + Vite
-- Tailwind CSS v4 (CSS-first theme, see `src/index.css`)
-- Three.js (`src/components/SceneBackground.jsx`)
-- react-icons
+- **Base Brand Color 1 (Primary)**: **Crimson** (`#e11d48` / `#ff2e63`) — bold, high-contrast, modern engineering energy.
+- **Base Brand Color 2 (Secondary)**: **Rose Ember** (`#fb7185` / `#fda4af`) — smooth warmth, artistic gradients, and subtle neon glows.
+- **Canvas & Surfaces**: Obsidian Noir (`#07080b`, `#0d0f15`, `#131622`) with glassmorphism backdrop blur (`backdrop-blur-xl`).
+- **Typography**: Space Grotesk (Display Headings), Plus Jakarta Sans (Crisp Body), and IBM Plex Mono (Code & Badges).
+- **Animations**: Three.js pointer-responsive node graph, subtle floating badges, infinite technology marquee, glowing borders, and smooth transitions.
+- **Mobile Friendly**: Fully responsive layout, touch-friendly navigation drawer, optimized form inputs, and floating back-to-top button.
 
-## Getting started
+## 🚀 Features
+
+- **Interactive 3D Background**: Dual-colored particle constellation with pointer parallax and ambient glow.
+- **Dynamic Hero Section**: Real-time availability indicator, stats highlight strip, portrait with floating tech badges (Python, Django, React, Postgres), and infinite tech marquee.
+- **Interactive Code Terminal**: Embedded `views.py` snippet with copy-to-clipboard functionality showcasing clean Django architecture.
+- **Categorized Skills Matrix**: Interactive tabs (Backend, Frontend, Databases, DevOps) with level bars and official technology icons.
+- **Featured Projects Showcase**: Filterable project catalog (All, Full Stack, Backend), terminal-style cards, live demo/source links, and interactive project details modal.
+- **Experience & Milestones Timeline**: Developer journey roadmap and core engineering ethos.
+- **Fully Functional Contact Section**: Real-time client-side validation, direct one-click email copy, WhatsApp prefilled link, and EmailJS + mailto fallback.
+
+## 🛠️ Quick Start
 
 ```bash
+# Install dependencies
 npm install
-npm run dev       # start local dev server
-npm run build     # production build -> dist/
-npm run preview   # preview the production build
+
+# Start development server
+npm run dev
+
+# Run linter
+npm run lint
+
+# Build for production
+npm run build
 ```
 
-## Editing your content
+## 📁 Content Configuration
 
-Everything you'll want to change lives in **`src/data/siteData.js`**:
-
-- `profile` — name, title, tagline, about paragraphs, social URLs, email
-- `navLinks` — navbar items
-- `skillGroups` — skills grouped by category
-- `projects` — project cards (name, description, tech, live/GitHub URLs)
-
-Replace the placeholder URLs (`YOUR_FACEBOOK_URL`, etc.) with your real links, and set `profile.profileImage` to an image path to show a real photo in the About section (drop the image into `src/assets/`).
-
-## Design tokens
-
-Colors, fonts, and other design tokens are defined once in `src/index.css` under `@theme`. Change `--color-accent` there to re-theme the whole site with one edit.
-
-## Project structure
-
-```
-src/
-├── components/
-│   ├── Navbar.jsx
-│   ├── Hero.jsx
-│   ├── About.jsx
-│   ├── Skills.jsx
-│   ├── Projects.jsx
-│   ├── ProjectCard.jsx
-│   ├── Contact.jsx
-│   ├── Footer.jsx
-│   └── SceneBackground.jsx   # Three.js animated background
-├── data/
-│   └── siteData.js           # all editable content
-├── App.jsx
-├── main.jsx
-└── index.css
-```
-
-## Deployment
-
-Works out of the box on **Vercel**, **Netlify**, or **GitHub Pages**:
-
-- Build command: `npm run build`
-- Output directory: `dist`
-
-## Notes
-
-- The contact form is frontend-only for now (no email is actually sent). Wire it up to a backend or a service like Formspree/EmailJS when you're ready.
-- Background animation respects `prefers-reduced-motion`.
+All site content, social links, skills, and projects can be edited in [siteData.js](file:///src/data/siteData.js):
+- `profile`: Bio, location, social links, resume link
+- `skillCategories`: Categorized skills and proficiency levels
+- `projects`: Project highlights, categories, stats, and repositories
+- `journeyTimeline`: Milestones and experience history
